@@ -18,7 +18,7 @@ namespace Assignment_1___Orion_Constellation
         {
             InitializeComponent();
 
-            // assigning labels to array for use in
+            // assigning labels to array for use in loop
             _starLabels =
             [
                 MeissaLabel,
