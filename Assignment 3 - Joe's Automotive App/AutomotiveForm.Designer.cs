@@ -192,9 +192,10 @@
             this.laborTextBox.Name = "laborTextBox";
             this.laborTextBox.Size = new System.Drawing.Size(76, 20);
             this.laborTextBox.TabIndex = 13;
-            // 
+            this.laborTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.laborTextBox_KeyPress);
+            //
             // partsTextBox
-            // 
+            //
             this.partsTextBox.Location = new System.Drawing.Point(108, 37);
             this.partsTextBox.Name = "partsTextBox";
             this.partsTextBox.Size = new System.Drawing.Size(76, 20);

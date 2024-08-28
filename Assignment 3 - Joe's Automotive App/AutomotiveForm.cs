@@ -154,5 +154,10 @@ namespace Assignment_3___Joe_s_Automotive_App
                 return amount.ToString("C", CultureInfo.CreateSpecificCulture("en-US"));
             }
         }
+
+        private void laborTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PreventNonNumbers(ref e);
+        }
     }
 }
