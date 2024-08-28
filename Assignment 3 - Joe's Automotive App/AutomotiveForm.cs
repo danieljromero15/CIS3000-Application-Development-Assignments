@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Assignment_3___Joe_s_Automotive_App
@@ -66,7 +59,7 @@ namespace Assignment_3___Joe_s_Automotive_App
 
         private double OtherCharges()
         {
-            // returns 0 if it can't parse afaik
+            // returns 0 if it can't parse afaik, but shouldn't happen unless multiple periods are inputted
             double.TryParse(partsTextBox.Text, out var parts);
             double.TryParse(laborTextBox.Text, out var labor);
             // not 100% sure it's supposed to be multiplication but the description isn't very descriptive
@@ -110,10 +103,10 @@ namespace Assignment_3___Joe_s_Automotive_App
 
         private void ClearFees()
         {
-            serviceAndLaborTextBox.Clear();
-            partsSummaryTextBox.Clear();
-            taxTextBox.Clear();
-            totalTextBox.Clear();
+            serviceAndLaborResultsLabel.Text = "";
+            partsSummaryResultsLabel.Text = "";
+            taxResultsLabel.Text = "";
+            totalResultsLabel.Text = "";
         }
 
         private void ClearAll()
@@ -140,12 +133,17 @@ namespace Assignment_3___Joe_s_Automotive_App
             PreventNonNumbers(ref e);
         }
 
+        private void laborTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            PreventNonNumbers(ref e);
+        }
+
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            serviceAndLaborTextBox.Text = ToCurrency(OilLubeCharges() + FlushCharges() + MiscCharges());
-            partsSummaryTextBox.Text = ToCurrency(OtherCharges());
-            taxTextBox.Text = ToCurrency(TaxCharges());
-            totalTextBox.Text = ToCurrency(TotalCharges());
+            serviceAndLaborResultsLabel.Text = ToCurrency(OilLubeCharges() + FlushCharges() + MiscCharges());
+            partsSummaryResultsLabel.Text = ToCurrency(OtherCharges());
+            taxResultsLabel.Text = ToCurrency(TaxCharges());
+            totalResultsLabel.Text = ToCurrency(TotalCharges());
 
             return;
 
@@ -153,11 +151,6 @@ namespace Assignment_3___Joe_s_Automotive_App
             {
                 return amount.ToString("C", CultureInfo.CreateSpecificCulture("en-US"));
             }
-        }
-
-        private void laborTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            PreventNonNumbers(ref e);
         }
     }
 }
