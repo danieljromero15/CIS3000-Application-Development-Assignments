@@ -13,9 +13,13 @@ namespace Assignment_3___Joe_s_Automotive_App
         }
 
         // prevents non-numbers from being inputted into text boxes
-        private static void PreventNonNumbers(ref KeyPressEventArgs e)
+        private static void PreventNonNumbers(ref KeyPressEventArgs e, bool isDecimal = true)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            var isNonDigit = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+            var isDecimalPoint = e.KeyChar == '.';
+
+            // ignore warning
+            if((isNonDigit && !isDecimal) || (isNonDigit && !isDecimalPoint))
             {
                 // a non-number was pressed, does nothing
                 e.Handled = true;
@@ -28,6 +32,7 @@ namespace Assignment_3___Joe_s_Automotive_App
             {
                 return double.Parse(checkBox.AccessibleDescription);
             }
+
             return 0;
         }
 
@@ -62,8 +67,8 @@ namespace Assignment_3___Joe_s_Automotive_App
             // returns 0 if it can't parse afaik, but shouldn't happen unless multiple periods are inputted
             double.TryParse(partsTextBox.Text, out var parts);
             double.TryParse(laborTextBox.Text, out var labor);
-            // not 100% sure it's supposed to be multiplication but the description isn't very descriptive
-            return parts + labor;
+            // labor is in hours, $20 per hour. multiply by parts
+            return parts * (labor * 20);
         }
 
         private double TaxCharges()
@@ -135,7 +140,7 @@ namespace Assignment_3___Joe_s_Automotive_App
 
         private void laborTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PreventNonNumbers(ref e);
+            PreventNonNumbers(ref e, isDecimal: false);
         }
 
         private void calculateButton_Click(object sender, EventArgs e)

@@ -44,6 +44,10 @@
             this.laborLabel = new System.Windows.Forms.Label();
             this.partsLabel = new System.Windows.Forms.Label();
             this.summaryBox = new System.Windows.Forms.GroupBox();
+            this.totalResultsLabel = new System.Windows.Forms.Label();
+            this.taxResultsLabel = new System.Windows.Forms.Label();
+            this.partsSummaryResultsLabel = new System.Windows.Forms.Label();
+            this.serviceAndLaborResultsLabel = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.taxLabel = new System.Windows.Forms.Label();
             this.partsSummaryLabel = new System.Windows.Forms.Label();
@@ -51,10 +55,6 @@
             this.calculateButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.serviceAndLaborResultsLabel = new System.Windows.Forms.Label();
-            this.partsSummaryResultsLabel = new System.Windows.Forms.Label();
-            this.taxResultsLabel = new System.Windows.Forms.Label();
-            this.totalResultsLabel = new System.Windows.Forms.Label();
             this.oilLubeBox.SuspendLayout();
             this.flushesBox.SuspendLayout();
             this.miscBox.SuspendLayout();
@@ -204,11 +204,11 @@
             //
             // laborLabel
             //
-            this.laborLabel.Location = new System.Drawing.Point(35, 75);
+            this.laborLabel.Location = new System.Drawing.Point(6, 75);
             this.laborLabel.Name = "laborLabel";
-            this.laborLabel.Size = new System.Drawing.Size(67, 19);
+            this.laborLabel.Size = new System.Drawing.Size(96, 19);
             this.laborLabel.TabIndex = 3;
-            this.laborLabel.Text = "Labor ($)";
+            this.laborLabel.Text = "Labor (hours)";
             this.laborLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             //
             // partsLabel
@@ -236,6 +236,42 @@
             this.summaryBox.TabIndex = 4;
             this.summaryBox.TabStop = false;
             this.summaryBox.Text = "Summary";
+            //
+            // totalResultsLabel
+            //
+            this.totalResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.totalResultsLabel.Location = new System.Drawing.Point(138, 99);
+            this.totalResultsLabel.Name = "totalResultsLabel";
+            this.totalResultsLabel.Size = new System.Drawing.Size(76, 19);
+            this.totalResultsLabel.TabIndex = 15;
+            this.totalResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
+            // taxResultsLabel
+            //
+            this.taxResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.taxResultsLabel.Location = new System.Drawing.Point(138, 73);
+            this.taxResultsLabel.Name = "taxResultsLabel";
+            this.taxResultsLabel.Size = new System.Drawing.Size(76, 19);
+            this.taxResultsLabel.TabIndex = 14;
+            this.taxResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
+            // partsSummaryResultsLabel
+            //
+            this.partsSummaryResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.partsSummaryResultsLabel.Location = new System.Drawing.Point(138, 47);
+            this.partsSummaryResultsLabel.Name = "partsSummaryResultsLabel";
+            this.partsSummaryResultsLabel.Size = new System.Drawing.Size(76, 19);
+            this.partsSummaryResultsLabel.TabIndex = 13;
+            this.partsSummaryResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            //
+            // serviceAndLaborResultsLabel
+            //
+            this.serviceAndLaborResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.serviceAndLaborResultsLabel.Location = new System.Drawing.Point(138, 21);
+            this.serviceAndLaborResultsLabel.Name = "serviceAndLaborResultsLabel";
+            this.serviceAndLaborResultsLabel.Size = new System.Drawing.Size(76, 19);
+            this.serviceAndLaborResultsLabel.TabIndex = 12;
+            this.serviceAndLaborResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             //
             // totalLabel
             //
@@ -302,42 +338,6 @@
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
-            //
-            // serviceAndLaborResultsLabel
-            //
-            this.serviceAndLaborResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.serviceAndLaborResultsLabel.Location = new System.Drawing.Point(138, 21);
-            this.serviceAndLaborResultsLabel.Name = "serviceAndLaborResultsLabel";
-            this.serviceAndLaborResultsLabel.Size = new System.Drawing.Size(76, 19);
-            this.serviceAndLaborResultsLabel.TabIndex = 12;
-            this.serviceAndLaborResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
-            // partsSummaryResultsLabel
-            //
-            this.partsSummaryResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.partsSummaryResultsLabel.Location = new System.Drawing.Point(138, 47);
-            this.partsSummaryResultsLabel.Name = "partsSummaryResultsLabel";
-            this.partsSummaryResultsLabel.Size = new System.Drawing.Size(76, 19);
-            this.partsSummaryResultsLabel.TabIndex = 13;
-            this.partsSummaryResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
-            // taxResultsLabel
-            //
-            this.taxResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.taxResultsLabel.Location = new System.Drawing.Point(138, 73);
-            this.taxResultsLabel.Name = "taxResultsLabel";
-            this.taxResultsLabel.Size = new System.Drawing.Size(76, 19);
-            this.taxResultsLabel.TabIndex = 14;
-            this.taxResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
-            // totalResultsLabel
-            //
-            this.totalResultsLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.totalResultsLabel.Location = new System.Drawing.Point(138, 99);
-            this.totalResultsLabel.Name = "totalResultsLabel";
-            this.totalResultsLabel.Size = new System.Drawing.Size(76, 19);
-            this.totalResultsLabel.TabIndex = 15;
-            this.totalResultsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             //
             // AutomotiveForm
             //
