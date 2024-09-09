@@ -66,12 +66,12 @@ namespace Assignment_2___Workshop_Selector
             // Adds all workshop info into box
             foreach (var workshop in _workshops)
             {
-                WorkshopBox.Items.Add($"{workshop.Name}\t{workshop.Length} {DayPlural(workshop.Length)}\t${workshop.Price:N0}");
+                workshopBox.Items.Add($"{workshop.Name}\t{workshop.Length} {DayPlural(workshop.Length)}\t${workshop.Price:N0}");
             }
 
             foreach (var location in _locations)
             {
-                LocationBox.Items.Add($"{location.Name}\t${location.Price:N0}");
+                locationBox.Items.Add($"{location.Name}\t${location.Price:N0}");
             }
         }
 
@@ -91,23 +91,23 @@ namespace Assignment_2___Workshop_Selector
         // Runs calculation and puts it into the box
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            ResultsField.Text = "";
+            resultsField.Text = "";
             //Console.WriteLine($"{WorkshopBox.SelectedIndex} {LocationBox.SelectedIndex}");
-            if (WorkshopBox.SelectedIndex != -1 && LocationBox.SelectedIndex != -1)
+            if (workshopBox.SelectedIndex != -1 && locationBox.SelectedIndex != -1)
             {
-                var selectedWorkshop = _workshops[WorkshopBox.SelectedIndex];
-                var selectedLocation = _locations[LocationBox.SelectedIndex];
+                var selectedWorkshop = _workshops[workshopBox.SelectedIndex];
+                var selectedLocation = _locations[locationBox.SelectedIndex];
 
                 var locPrice = selectedLocation.Price;
                 var workPrice = selectedWorkshop.Price;
                 
-                ResultsField.Text += $"Registration: ${workPrice:N0}";
-                ResultsField.Text += $"\nLodging: ${locPrice:N0} \u00d7 {selectedWorkshop.Length} {DayPlural(selectedWorkshop.Length)} = ${(locPrice * selectedWorkshop.Length):N0}";
-                ResultsField.Text += $"\nTotal: ${(workPrice + (locPrice * selectedWorkshop.Length)):N0}";
+                resultsField.Text += $"Registration: ${workPrice:N0}";
+                resultsField.Text += $"\nLodging: ${locPrice:N0} \u00d7 {selectedWorkshop.Length} {DayPlural(selectedWorkshop.Length)} = ${(locPrice * selectedWorkshop.Length):N0}";
+                resultsField.Text += $"\nTotal: ${(workPrice + (locPrice * selectedWorkshop.Length)):N0}";
             }
             else
             {
-                ResultsField.Text = "Please select a workshop and location";
+                resultsField.Text = "Please select a workshop and location";
             }
         }
     }
