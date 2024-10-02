@@ -23,7 +23,7 @@ namespace Assignment_3___Joe_s_Automotive_App
             var isNonDigit = !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
             var isDecimalPoint = e.KeyChar == '.';
 
-            if((isNonDigit && !isDecimal) || (isNonDigit && !isDecimalPoint))
+            if ((isNonDigit && !isDecimal) || (isNonDigit && !isDecimalPoint))
             {
                 // a non-number was pressed, does nothing
                 e.Handled = true;
@@ -73,25 +73,27 @@ namespace Assignment_3___Joe_s_Automotive_App
         }
 
         // Returns the total charges for other services (parts and labor), if any
-        private double OtherCharges()
+        private double[] OtherCharges()
         {
             // returns 0 if it can't parse afaik, but shouldn't happen unless multiple periods are inputted
             double.TryParse(partsTextBox.Text, out var parts);
             double.TryParse(laborTextBox.Text, out var labor);
             // labor is in hours, $20 per hour. multiply by parts
-            return parts * (labor * 20);
+            // oh i guess not? requirements changed...
+            // please excuse messy fix, change in requirements doesn't match textbook
+            return [parts, labor];
         }
 
         // Returns the amount of sales tax, if any. Sales tax is 6% and is charged only on parts. If the customer purchases services only, no sales tax is charged
         private double TaxCharges()
         {
-            return OtherCharges() * 0.06;
+            return OtherCharges()[0] * 0.06;
         }
 
         // Returns the total charges
         private double TotalCharges()
         {
-            return OilLubeCharges() + FlushCharges() + MiscCharges() + OtherCharges() + TaxCharges();
+            return OilLubeCharges() + FlushCharges() + MiscCharges() + OtherCharges()[1] + TaxCharges();
         }
 
         // Clears the checkboxes for oil change and lube job
@@ -163,15 +165,16 @@ namespace Assignment_3___Joe_s_Automotive_App
         // prevents non-numbers and periods from being inputted into the parts text box
         private void laborTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            PreventNonNumbers(ref e, isDecimal: false);
+            PreventNonNumbers(ref e);
         }
 
         // calculation
         private void calculateButton_Click(object sender, EventArgs e)
         {
             // calculates results
-            serviceAndLaborResultsLabel.Text = ToCurrency(OilLubeCharges() + FlushCharges() + MiscCharges());
-            partsSummaryResultsLabel.Text = ToCurrency(OtherCharges());
+            serviceAndLaborResultsLabel.Text =
+                ToCurrency(OilLubeCharges() + FlushCharges() + MiscCharges() + OtherCharges()[1]);
+            partsSummaryResultsLabel.Text = ToCurrency(OtherCharges()[0]);
             taxResultsLabel.Text = ToCurrency(TaxCharges());
             totalResultsLabel.Text = ToCurrency(TotalCharges());
 
