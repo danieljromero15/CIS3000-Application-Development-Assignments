@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Programmer: Daniel Romero
+// Class: CIS 3000 Fall 2024
+// Program Purpose: To simulate a vending machine and add costs
+
+using System;
 using System.Windows.Forms;
 
 namespace Assignment_4___Drink_Vending_Machine_Simulator_App
