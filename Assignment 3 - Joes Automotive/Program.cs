@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Assignment_3___Joe_s_Automotive_App
+namespace Assignment_3___Joes_Automotive
 {
     internal static class Program
     {

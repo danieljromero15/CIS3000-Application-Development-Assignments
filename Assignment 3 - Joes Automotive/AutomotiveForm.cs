@@ -6,7 +6,7 @@ using System;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace Assignment_3___Joe_s_Automotive_App
+namespace Assignment_3___Joes_Automotive
 {
     public partial class AutomotiveForm : Form
     {

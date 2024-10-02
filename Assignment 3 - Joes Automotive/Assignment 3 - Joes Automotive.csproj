@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{01A4E4D8-D86C-4412-BAE2-4AD0DB18F7D2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Assignment_3___Joe_s_Automotive_App</RootNamespace>
-    <AssemblyName>Assignment 3 - Joe%27s Automotive App</AssemblyName>
+    <RootNamespace>Assignment_3___Joes_Automotive</RootNamespace>
+    <AssemblyName>Assignment 3 - Joes Automotive</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
