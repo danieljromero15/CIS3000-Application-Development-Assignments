@@ -53,7 +53,7 @@
                     Take a quiz on your Git knowledge!
                 </p>
                 <p>
-                    <a class="btn btn-primary" href="Quiz.aspx">Take the quiz &raquo;</a>
+                    <a class="btn btn-primary" target="_self" href="Quiz.aspx">Take the quiz &raquo;</a>
                 </p>
             </section>
         </div>
