@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Assignment_5___Personal_Website
 {
-    public partial class About : Page
+    public partial class Quiz : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

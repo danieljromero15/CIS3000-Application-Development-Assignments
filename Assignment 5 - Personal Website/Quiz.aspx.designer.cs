@@ -11,7 +11,7 @@ namespace Assignment_5___Personal_Website
 {
 
 
-    public partial class _Default
+    public partial class Quiz
     {
 
         /// <summary>
