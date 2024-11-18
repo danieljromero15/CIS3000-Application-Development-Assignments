@@ -20,6 +20,11 @@ textarea {
     }
 }
 
+.nav-color {
+    background-color: #010409;
+    color: white;
+}
+
 body {
     background: #0D1117;
     color: #E4E9EF;
