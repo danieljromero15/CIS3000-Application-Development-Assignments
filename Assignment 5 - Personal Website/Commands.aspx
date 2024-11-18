@@ -21,6 +21,5 @@
                 Some other examples include folders that include the compiled files, usually a folder called <code>bin</code> or <code>release</code>, depending on language and folder structure.
             </p>
         </section>
-        <%-- TODO Add something about .gitignore and other hidden directories --%>
     </main>
 </asp:Content>
