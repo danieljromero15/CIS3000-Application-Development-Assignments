@@ -11,7 +11,7 @@ namespace Assignment_5___Personal_Website
 {
 
 
-    public partial class Comparison
+    public partial class Hosting
     {
 
         /// <summary>

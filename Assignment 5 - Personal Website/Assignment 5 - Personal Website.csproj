@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Commands.aspx" />
-    <Content Include="Comparison.aspx" />
+    <Content Include="Hosting.aspx" />
     <Content Include="Quiz.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.css.map" />
@@ -194,12 +194,12 @@
       <DependentUpon>Commands.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Comparison.aspx.cs">
+    <Compile Include="Hosting.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Comparison.aspx</DependentUpon>
+      <DependentUpon>Hosting.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Comparison.aspx.designer.cs">
-      <DependentUpon>Comparison.aspx</DependentUpon>
+    <Compile Include="Hosting.aspx.designer.cs">
+      <DependentUpon>Hosting.aspx</DependentUpon>
     </Compile>
     <Compile Include="Quiz.aspx.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
