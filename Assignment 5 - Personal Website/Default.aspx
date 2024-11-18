@@ -43,7 +43,7 @@
                     <a href="https://bitbucket.org/product/">BitBucket</a>,
                     and <a href="https://about.gitlab.com/">GitLab</a>.
                 </p>
-                <!--<p>
+                <!--<p> TODO: maybe add comparison link here, as we will be comparing the different platforms. This will have ordered list by popularity as well as table with differences
                     <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
                 </p>-->
             </section>
