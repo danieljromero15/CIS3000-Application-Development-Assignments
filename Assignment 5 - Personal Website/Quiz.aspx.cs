@@ -1,86 +1,109 @@
 ﻿using System;
+using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Assignment_5___Personal_Website
+namespace Assignment_5___Personal_Website;
+
+public partial class Quiz : Page
 {
-    public partial class Quiz : Page
+    private QuestionBase _currentQuestion;
+    private static PlaceHolder _qPlaceHolder;
+    protected const int CurrentQuestionNum = 1;
+
+    public abstract class QuestionBase(string question)
     {
-        private IQuestion _currentQuestion;
-        protected const int CurrentQuestionNum = 1;
+        protected readonly string Question = question;
+        protected readonly PlaceHolder PlaceHolder = _qPlaceHolder;
+        protected string Answer;
 
-        private interface IQuestion
+        protected abstract void CreateQuestion();
+        protected abstract string GetSelectedAnswer(); // depends on Control
+
+        public bool CheckAnswer()
         {
-            public void CreateQuestion();
-            public dynamic GetSelectedAnswer(); // answer can be either int or string I think
-            public bool CheckAnswer(string selectedAnswer); // checks int or string against answers[0]
-
-            public bool CheckAnswer(); // checks int or string against answers[0]
-            //public string ToString(); // needs to have a ToString
+            return GetSelectedAnswer() == Answer;
         }
 
-        // answers are sorted randomly, answers[0] is the correct one
-        public class QuestionMultipleChoice : IQuestion
+        public bool CheckAnswer(string selectedAnswer)
         {
-            private readonly RadioButtonList _rbl;
-            private readonly string _question;
-            private readonly string[] _answers;
-            private readonly PlaceHolder _placeHolder;
+            return selectedAnswer == Answer;
+        }
+    }
 
-            public QuestionMultipleChoice(ref PlaceHolder placeHolder, string question, string[] answers)
-            {
-                _question = question;
-                _answers = answers;
-                _placeHolder = placeHolder;
+    // answers are sorted randomly, answers[0] is the correct one
+    public sealed class QuestionMultipleChoice : QuestionBase
+    {
+        private readonly RadioButtonList _rbl;
+        private readonly string[] _answers;
 
-                _rbl = new RadioButtonList();
-                CreateQuestion();
-            }
+        public QuestionMultipleChoice(string question, string[] answers) : base(
+            question)
+        {
+            _answers = answers;
+            Answer = _answers[0];
 
-            public void CreateQuestion()
-            {
-                _placeHolder.Controls.Add(new Label { Text = _question });
-
-                foreach (var answer in _answers)
-                {
-                    _rbl.Items.Add(new ListItem(answer));
-                }
-
-                _placeHolder.Controls.Add(_rbl);
-            }
-
-            public dynamic GetSelectedAnswer()
-            {
-                return _rbl.SelectedItem.Text;
-            }
-
-            public bool CheckAnswer()
-            {
-                return GetSelectedAnswer() == _answers[0];
-            }
-
-            public bool CheckAnswer(string selectedAnswer)
-            {
-                return selectedAnswer == _answers[0];
-            }
+            _rbl = new RadioButtonList();
+            CreateQuestion();
         }
 
-        public class QuestionFillInTheBlank
+        protected override void CreateQuestion()
         {
-            // TODO inherit interface, implement methods
+            var randy = new Random();
+            PlaceHolder.Controls.Add(new Label { Text = Question });
+
+            var randomAnswers = _answers.OrderBy(_ => randy.Next()).ToArray();
+            foreach (var answer in randomAnswers)
+            {
+                _rbl.Items.Add(new ListItem(answer));
+            }
+
+            PlaceHolder.Controls.Add(_rbl);
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override string GetSelectedAnswer()
         {
-            // TODO add more questions, add switching between them
-            _currentQuestion =
-                new QuestionMultipleChoice(ref questionPlaceHolder, "How old am I?", ["1", "2", "3", "4"]);
+            return _rbl.SelectedItem.Text;
+        }
+    }
+
+    public sealed class QuestionFillInTheBlank : QuestionBase
+    {
+        private readonly TextBox _txt;
+
+        public QuestionFillInTheBlank(string question, string answer) : base(question)
+        {
+            Answer = answer;
+
+            _txt = new TextBox();
+            CreateQuestion();
         }
 
-        protected void submitButton_OnClick(object sender, EventArgs e)
+        protected override void CreateQuestion()
         {
-            // TODO add logic for correct and incorrect answers, and add popup for next question
-            resultLabel.Text = _currentQuestion.CheckAnswer().ToString();
+            PlaceHolder.Controls.Add(new Label { Text = Question + " " });
+            PlaceHolder.Controls.Add(_txt);
         }
+
+        protected override string GetSelectedAnswer()
+        {
+            return _txt.Text;
+        }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        _qPlaceHolder = questionPlaceHolder;
+        // TODO add more questions, add switching between them
+        //_currentQuestion = new QuestionMultipleChoice("How old am I?", ["1", "2", "3", "4"]);
+        _currentQuestion = new QuestionFillInTheBlank("What command is used to pull from a remote repo?", "git pull");
+    }
+
+    protected void submitButton_OnClick(object sender, EventArgs e)
+    {
+        // TODO add logic for correct and incorrect answers, and add popup for next question
+        resultLabel.Text = _currentQuestion.CheckAnswer().ToString();
+        Page.Title =
+            "Quiz - Intro to GitHub"; // title would reset to just quiz? no idea why that was happening, here's a band-aid
     }
 }
