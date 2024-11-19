@@ -11,6 +11,7 @@ public partial class Quiz : Page
     protected static int CurrentQuestionNum;
     private static PlaceHolder _qPlaceHolder;
 
+    // array for questions and answers
     private static readonly QuestionBase[] Questions =
     [
         new QuestionFillInTheBlank("What command is used to pull any changes from a remote repo?", "git pull"),
@@ -28,6 +29,7 @@ public partial class Quiz : Page
         new QuestionMultipleChoice("What type of software is Git?", ["Free and open-source software (FOSS)", "Proprietary", "Adware", "Freemium", "Abandonware"])
     ];
 
+    // abstract class for all questions, includes question string and answer string, including code checking
     public abstract class QuestionBase(string question)
     {
         protected readonly string Question = question;
@@ -49,6 +51,7 @@ public partial class Quiz : Page
         }
     }
 
+    // multiple choice question class
     // answers are sorted randomly, answers[0] is the correct one
     public sealed class QuestionMultipleChoice : QuestionBase
     {
@@ -63,6 +66,7 @@ public partial class Quiz : Page
             //CreateQuestion();
         }
 
+        // creates multiple choice question, inserts into placeholder. randomly sorts answers
         public override void Create()
         {
             var randy = new Random();
@@ -81,12 +85,14 @@ public partial class Quiz : Page
             _qPlaceHolder.Controls.Add(_rbl);
         }
 
+        // returns selected answer if there is one, otherwise returns empty string
         protected override string GetSelectedAnswer()
         {
             return _rbl.SelectedItem != null ? _rbl.SelectedItem.Text : "";
         }
     }
 
+    // fill in the blank question class
     public sealed class QuestionFillInTheBlank : QuestionBase
     {
         private readonly TextBox _txt;
@@ -94,11 +100,11 @@ public partial class Quiz : Page
         public QuestionFillInTheBlank(string question, string answer) : base(question)
         {
             Answer = answer;
-
             _txt = new TextBox();
             //CreateQuestion();
         }
 
+        // creates label and textbox, then adds them to the placeholder
         public override void Create()
         {
             _qPlaceHolder.Controls.Clear();
@@ -106,6 +112,7 @@ public partial class Quiz : Page
             _qPlaceHolder.Controls.Add(_txt);
         }
 
+        // returns the textbox text
         protected override string GetSelectedAnswer()
         {
             return _txt.Text;
@@ -116,6 +123,7 @@ public partial class Quiz : Page
     {
         _qPlaceHolder = questionPlaceHolder;
 
+        // makes sure the buttons don't cause an arrayoutofbounds exception
         if (CurrentQuestionNum >= Questions.Length - 1)
         {
             nextButton.Visible = false;
@@ -126,34 +134,34 @@ public partial class Quiz : Page
             backButton.Visible = false;
         }
 
-        // TODO add more questions, add switching between them
+        // loads current question
         load_question(CurrentQuestionNum);
     }
 
+    // originally was gonna load questions programatically but i'm scared of breaking it by removing this
     private void load_question(int num)
     {
         _currentQuestion = Questions[num];
         _currentQuestion.Create();
     }
 
+    // 
     protected void submitButton_OnClick(object sender, EventArgs e)
     {
-        var result = _currentQuestion.CheckAnswer();
-        resultLabel.Text = result ? "Correct!" : "Incorrect!";
-
-        // TODO add logic for correct and incorrect answers, and add popup for next question
-
-        //resultLabel.Text = _currentQuestion.CheckAnswer() ? "Correct!" : "Incorrect!";
+        // gives feedback
+        resultLabel.Text = _currentQuestion.CheckAnswer() ? "Correct!" : "Incorrect!";
         Page.Title =
             "Quiz - Intro to GitHub"; // title would reset to just quiz? no idea why that was happening, here's a band-aid
     }
 
+    // if back button is pressed, decrement question num and switch pages
     protected void backButton_OnClick(object sender, EventArgs e)
     {
         CurrentQuestionNum--;
         Response.Redirect(Request.RawUrl);
     }
 
+    // same for next button
     protected void nextButton_OnClick(object sender, EventArgs e)
     {
         CurrentQuestionNum++;

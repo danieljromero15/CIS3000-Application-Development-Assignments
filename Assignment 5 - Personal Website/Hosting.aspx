@@ -27,6 +27,7 @@
         </section>
         <section>
             <p>Here is a comparison of the most popular ones:</p>
+            <%-- table programatically in codebehind --%>
             <asp:PlaceHolder runat="server" id="ranking_table"/>
         </section>
     </main>

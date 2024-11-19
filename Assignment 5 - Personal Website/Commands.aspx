@@ -7,6 +7,7 @@
         <h2 id="title"><%: Title %></h2>
         <section>
             <h4>Basic Git commands</h4>
+            <%-- Programatically adds list elements in codebehind --%>
             <ul runat="server" id="commandList"></ul>
         </section>
         <section>

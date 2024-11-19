@@ -3,6 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
         <h2 id="title"><%: Title %></h2>
+        <%-- Question area --%>
         <asp:UpdatePanel ID="questionUpdatePanel" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <h6>Question <%: CurrentQuestionNum + 1 %></h6>
@@ -10,6 +11,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <br>
+        <%-- results and buttons area --%>
         <asp:UpdatePanel ID="submitUpdatePanel" runat="server">
             <ContentTemplate>
                 <asp:Label runat="server" ID="resultLabel"></asp:Label>
