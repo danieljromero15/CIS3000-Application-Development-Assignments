@@ -3,17 +3,17 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
         <h2 id="title"><%: Title %></h2>
-        <h3>Your contact page.</h3>
-        <address>
-            One Microsoft Way<br />
-            Redmond, WA 98052-6399<br />
-            <abbr title="Phone">P:</abbr>
-            425.555.0100
-        </address>
-
-        <address>
-            <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-            <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-        </address>
+        <section>
+            <h6>Question <%: CurrentQuestionNum %></h6>
+            <asp:PlaceHolder runat="server" id="questionPlaceHolder"/>
+        </section>
+        <br>
+        <asp:UpdatePanel ID="submitUpdatePanel" runat="server">
+            <ContentTemplate>
+                <asp:Label runat="server" ID="resultLabel"></asp:Label>
+                <br>
+                <asp:Button type="submit" ID="submitButton" Text="Submit" runat="server" OnClick="submitButton_OnClick"/>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </main>
 </asp:Content>
