@@ -15,6 +15,15 @@ namespace Assignment_5___Personal_Website
     {
 
         /// <summary>
+        /// ranking_table control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder ranking_table;
+
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>
