@@ -136,6 +136,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\img\gh_screenshot.png" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

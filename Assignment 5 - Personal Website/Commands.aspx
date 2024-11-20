@@ -21,6 +21,10 @@
                 such as a file containing API keys or any files that have IDE settings like <code>.vs</code> or <code>.idea</code>.
                 Some other examples include folders that include the compiled files, usually a folder called <code>bin</code> or <code>release</code>, depending on language and folder structure.
             </p>
+            <br>
+            <br>
+            <h4>Example of a GitHub repository</h4>
+            <img src="/Content/img/gh_screenshot.png" alt="Example GitHub repository picture"/>
         </section>
     </main>
 </asp:Content>
